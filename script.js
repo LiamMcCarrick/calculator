@@ -39,7 +39,11 @@ function operate(numbers, operator) {
             result = numbers.reduce((total,currentNumber) => {
                 return divide(total,currentNumber);
              }); 
-             return result.toFixed(2)
+             if (result === 'Error') {
+                return result
+             } else {
+                return result.toFixed(2)
+             }
     }
 }
 
