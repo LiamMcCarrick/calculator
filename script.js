@@ -23,14 +23,21 @@ function operate(number1,number2,operator) {
             return add(number1,number2);
         case '-':
             return subtract(number1,number2);
-        case 'x':
+        case '*':
             return multiply(number1,number2);
         case '/':
             return divide(number1,number2);
     }
 }
 
-let number1 = 0;
-let number2 = 0;
-let operator = '';
+const numberArr = [];
 
+const displayContainer = document.querySelector(".display");
+const digits = document.querySelectorAll(".digit");
+
+digits.forEach((digit) => {
+    digit.addEventListener("click", () => {
+        displayContainer.textContent = digit.textContent;
+        numberArr.push(displayContainer.textContent);
+    });
+});
