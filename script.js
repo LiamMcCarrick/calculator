@@ -78,3 +78,12 @@ equals.addEventListener("click", function() {
     displayText = result;
     display();
 });
+
+const clearCalculation = document.querySelector(".clear");
+
+clearCalculation.addEventListener("click", () => {
+    numbers = [];
+    displayText = '';
+    operatorSelected = '';
+    displayContainer.textContent = 0;
+})
