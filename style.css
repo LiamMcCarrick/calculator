@@ -43,7 +43,7 @@ button {
     border-radius: 5px;
 }
 
-.operator {
+.operator, .equals {
     background-color: indianred;
 }
 
