@@ -51,6 +51,17 @@ function display() {
     displayContainer.textContent = displayText;
 }
 
+function operationCheck() {
+    if (operatorSelected !== '' && numbers.length === 2) {
+        const result = operate(numbers,operatorSelected);
+        operationConducted = true;
+        displayText = result;
+        display();
+        displayText = '';
+        numbers = [+result];
+    };
+}
+
 let numbers = [];
 let displayText = '';
 let operatorSelected = '';
@@ -79,21 +90,16 @@ operators.forEach((operator) => {
             numbers.push(+displayText);
         }
         displayText = '';
+        operationCheck();
         operatorSelected = operator.textContent;
     })
 })
 
-equals.addEventListener("click", function() {
+equals.addEventListener("click", function () {
     if (displayText !== '') {
         numbers.push(+displayText);
     }
-    if (operatorSelected !== '' && numbers.length === 2) {
-        const result = operate(numbers,operatorSelected);
-        operationConducted = true;
-        numbers = [];
-        displayText = result;
-        display();
-    };
+    operationCheck();
 });
 
 const clearCalculation = document.querySelector(".clear");
