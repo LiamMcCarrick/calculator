@@ -50,6 +50,7 @@ function operate(numbers, operator) {
 function display() {
     displayContainer.textContent = displayText;
 }
+
 let numbers = [];
 let displayText = '';
 let operatorSelected = '';
@@ -60,12 +61,17 @@ const equals = document.querySelector(".equals");
 
 digits.forEach((digit) => {
     digit.addEventListener("click", function() {
+        if (operationConducted) {
+            displayText = '';
+            operationConducted = false;
+        }
         displayText += digit.textContent;
         display();
     });
 });
 
 const operators = document.querySelectorAll(".operator")
+let operationConducted = false;
 
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
@@ -83,6 +89,7 @@ equals.addEventListener("click", function() {
     }
     if (operatorSelected !== '' && numbers.length === 2) {
         const result = operate(numbers,operatorSelected);
+        operationConducted = true;
         numbers = [];
         displayText = result;
         display();
