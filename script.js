@@ -69,18 +69,24 @@ const operators = document.querySelectorAll(".operator")
 
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
-        numbers.push(+displayText);
+        if (displayText !== '') {
+            numbers.push(+displayText);
+        }
         displayText = '';
         operatorSelected = operator.textContent;
     })
 })
 
 equals.addEventListener("click", function() {
-    numbers.push(+displayText);
-    const result = operate(numbers,operatorSelected);
-    numbers = [];
-    displayText = result;
-    display();
+    if (displayText !== '') {
+        numbers.push(+displayText);
+    }
+    if (operatorSelected !== '' && numbers.length === 2) {
+        const result = operate(numbers,operatorSelected);
+        numbers = [];
+        displayText = result;
+        display();
+    };
 });
 
 const clearCalculation = document.querySelector(".clear");
